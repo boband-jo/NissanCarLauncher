@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private GridView mAppGridView;
+    private TextView mEmptyTextView;
     private List<AppInfo> mAppList;
     private AppAdapter mAdapter;
 
@@ -35,10 +37,12 @@ public class MainActivity extends AppCompatActivity {
         initViews();
         initAppList();
         loadInstalledApps();
+        updateEmptyView();
     }
 
     private void initViews() {
         mAppGridView = (GridView) findViewById(R.id.app_grid);
+        mEmptyTextView = (TextView) findViewById(R.id.empty_text);
         mAdapter = new AppAdapter();
         mAppGridView.setAdapter(mAdapter);
 
@@ -49,7 +53,13 @@ public class MainActivity extends AppCompatActivity {
                 if (app.packageName != null) {
                     Intent launchIntent = getPackageManager().getLaunchIntentForPackage(app.packageName);
                     if (launchIntent != null) {
-                        startActivity(launchIntent);
+                        try {
+                            startActivity(launchIntent);
+                        } catch (Exception e) {
+                            Toast.makeText(MainActivity.this, "无法启动：" + app.name, Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(MainActivity.this, app.name + " 未安装或不可启动", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -57,16 +67,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initAppList() {
-        // 清空并添加默认应用
         mAppList.clear();
-        addApp("导航", "com.autonavi.amapauto", null, R.drawable.ic_nav);
-        addApp("蓝牙电话", "com.android.bluetooth", null, R.drawable.ic_phone);
-        addApp("音乐", "com.android.music", null, R.drawable.ic_music);
-        addApp("收音机", "com.android.fmradio", null, R.drawable.ic_radio);
-        addApp("设置", "com.android.settings", null, R.drawable.ic_settings);
-        addApp("天气", "com.moji.weather", null, R.drawable.ic_weather);
-        addApp("CarLife", "com.baidu.carlifevehicle", null, R.drawable.ic_carlife);
-        addApp("应用商店", "com.nissan.appstore", null, R.drawable.ic_appstore);
+        // 添加一些常见车机应用包名，根据实际调整
+        addApp("设置", "com.android.settings", R.drawable.ic_settings);
+        addApp("蓝牙", "com.android.bluetooth", R.drawable.ic_phone);
+        addApp("音乐", "com.android.music", R.drawable.ic_music);
+        addApp("收音机", "com.android.fmradio", R.drawable.ic_radio);
+        // 添加导航（高德地图车机版常见包名）
+        addApp("导航", "com.autonavi.amapauto", R.drawable.ic_nav);
+        addApp("天气", "com.moji.weather", R.drawable.ic_weather);
+        addApp("CarLife", "com.baidu.carlifevehicle", R.drawable.ic_carlife);
+        addApp("应用商店", "com.nissan.appstore", R.drawable.ic_appstore);
         mAdapter.notifyDataSetChanged();
     }
 
@@ -77,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         List<ResolveInfo> resolveInfos = pm.queryIntentActivities(mainIntent, 0);
         for (ResolveInfo info : resolveInfos) {
             String packageName = info.activityInfo.packageName;
-            // 避免重复添加已存在的默认应用
+            // 避免重复添加
             boolean exists = false;
             for (AppInfo app : mAppList) {
                 if (app.packageName != null && app.packageName.equals(packageName)) {
@@ -87,30 +98,37 @@ public class MainActivity extends AppCompatActivity {
             }
             if (!exists) {
                 String appName = info.loadLabel(pm).toString();
-                addApp(appName, packageName, null, android.R.drawable.sym_def_app_icon);
+                addApp(appName, packageName, android.R.drawable.sym_def_app_icon);
             }
         }
         mAdapter.notifyDataSetChanged();
+        updateEmptyView();
     }
 
-    private void addApp(String name, String packageName, String className, int iconRes) {
+    private void addApp(String name, String packageName, int iconRes) {
         AppInfo app = new AppInfo();
         app.name = name;
         app.packageName = packageName;
-        app.className = className;
         app.iconRes = iconRes;
         mAppList.add(app);
     }
 
-    // 内部类 AppInfo
+    private void updateEmptyView() {
+        if (mAppList.isEmpty()) {
+            mAppGridView.setVisibility(View.GONE);
+            mEmptyTextView.setVisibility(View.VISIBLE);
+        } else {
+            mAppGridView.setVisibility(View.VISIBLE);
+            mEmptyTextView.setVisibility(View.GONE);
+        }
+    }
+
     private class AppInfo {
         String name;
         String packageName;
-        String className;
         int iconRes;
     }
 
-    // 适配器
     private class AppAdapter extends BaseAdapter {
         @Override
         public int getCount() {
