@@ -1,13 +1,10 @@
-
-&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;resources&gt;
-
-    &lt;style name="AppTheme" parent="android:Theme.Material.Light.NoActionBar"&gt;
-        &lt;item name="android:windowNoTitle"&gt;true&lt;/item&gt;
-        &lt;item name="android:windowFullscreen"&gt;true&lt;/item&gt;
-        &lt;item name="android:colorPrimary"&gt;@color/colorPrimary&lt;/item&gt;
-        &lt;item name="android:colorPrimaryDark"&gt;@color/colorPrimaryDark&lt;/item&gt;
-        &lt;item name="android:colorAccent"&gt;@color/colorAccent&lt;/item&gt;
-    &lt;/style&gt;
-
-&lt;/resources&gt;
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+</resources>
