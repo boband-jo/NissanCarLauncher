@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace 'com.yourpackage.nissancarlauncher'  // 请改为你的实际包名
+    namespace 'com.nissan.carlauncher'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.yourpackage.nissancarlauncher"  // 请改为你的实际包名
+        applicationId "com.nissan.carlauncher"
         minSdk 21
         targetSdk 34
         versionCode 1
