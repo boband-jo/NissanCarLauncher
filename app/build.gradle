@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace 'com.yourpackage.nissancarlauncher'  // 🔴 请改为你的实际包名
+    namespace 'com.yourpackage.nissancarlauncher'  // 请改为你的实际包名
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.yourpackage.nissancarlauncher"  // 🔴 请改为你的实际包名
+        applicationId "com.yourpackage.nissancarlauncher"  // 请改为你的实际包名
         minSdk 21
         targetSdk 34
         versionCode 1
@@ -29,12 +29,6 @@ android {
 }
 
 dependencies {
-    // 本地 jar 依赖
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    
-    // 如果你原本有 support 库依赖，需要迁移到 AndroidX，例如：
-    // implementation 'androidx.appcompat:appcompat:1.6.1'
-    // implementation 'com.google.android.material:material:1.9.0'
-    
-    // 如果有其他第三方依赖，请将原来的 compile 全部改为 implementation
+    implementation 'androidx.appcompat:appcompat:1.6.1'
 }
