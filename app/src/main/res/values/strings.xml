@@ -1,5 +1,4 @@
-
-&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;resources&gt;
-    &lt;string name="app_name"&gt;日产车机桌面&lt;/string&gt;
-&lt;/resources&gt;
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Nissan Car Launcher</string>
+</resources>
