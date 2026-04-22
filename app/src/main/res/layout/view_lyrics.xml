@@ -1,22 +1,7 @@
-
-&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#80000000"
-    android:gravity="center"
-    android:padding="15dp"&gt;
-
-    &lt;TextView
-        android:id="@+id/lyrics_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="正在播放..."
-        android:textColor="#ffffff"
-        android:textSize="20sp"
-        android:shadowColor="#000000"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="4" /&gt;
-
-&lt;/LinearLayout&gt;
+    android:text="Lyrics"
+    android:textSize="16sp"
+    android:padding="8dp"/>
