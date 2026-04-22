@@ -1,0 +1,78 @@
+
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.nissan.carlauncher"&gt;
+
+    &lt;!-- 基础权限 --&gt;
+    &lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+    &lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;
+    &lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /&gt;
+    &lt;uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /&gt;
+    &lt;uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /&gt;
+    
+    &lt;!-- 蓝牙相关权限 --&gt;
+    &lt;uses-permission android:name="android.permission.BLUETOOTH" /&gt;
+    &lt;uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /&gt;
+    
+    &lt;!-- 存储权限 --&gt;
+    &lt;uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /&gt;
+    &lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt;
+    
+    &lt;!-- 系统权限 --&gt;
+    &lt;uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /&gt;
+    &lt;uses-permission android:name="android.permission.GET_TASKS" /&gt;
+    &lt;uses-permission android:name="android.permission.REORDER_TASKS" /&gt;
+    &lt;uses-permission android:name="android.permission.WRITE_SETTINGS" /&gt;
+    &lt;uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /&gt;
+    
+    &lt;!-- 音频相关 --&gt;
+    &lt;uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" /&gt;
+    &lt;uses-permission android:name="android.permission.RECORD_AUDIO" /&gt;
+
+    &lt;application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:persistent="true"&gt;
+        
+        &lt;activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:launchMode="singleTask"
+            android:configChanges="keyboardHidden|orientation|screenSize|fontScale"&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="android.intent.action.MAIN" /&gt;
+                &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+                &lt;category android:name="android.intent.category.HOME" /&gt;
+                &lt;category android:name="android.intent.category.DEFAULT" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+        
+        &lt;!-- 开机自启动接收器 --&gt;
+        &lt;receiver android:name=".BootReceiver"&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="android.intent.action.BOOT_COMPLETED" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/receiver&gt;
+        
+        &lt;!-- 媒体按钮接收器 --&gt;
+        &lt;receiver android:name=".MediaButtonReceiver"&gt;
+            &lt;intent-filter android:priority="1000"&gt;
+                &lt;action android:name="android.intent.action.MEDIA_BUTTON" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/receiver&gt;
+        
+        &lt;!-- 蓝牙歌词服务 --&gt;
+        &lt;service android:name=".BluetoothLyricsService" /&gt;
+        
+        &lt;!-- 车机数据读取服务 --&gt;
+        &lt;service android:name=".CarDataService" /&gt;
+        
+        &lt;!-- 红绿灯悬浮窗服务 --&gt;
+        &lt;service android:name=".TrafficLightService" /&gt;
+        
+    &lt;/application&gt;
+
+&lt;/manifest&gt;

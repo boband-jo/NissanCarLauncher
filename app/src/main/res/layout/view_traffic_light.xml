@@ -1,0 +1,27 @@
+
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#80000000"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="10dp"&gt;
+
+    &lt;ImageView
+        android:id="@+id/traffic_light"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/traffic_light_red" /&gt;
+
+    &lt;TextView
+        android:id="@+id/countdown_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="5"
+        android:textColor="#ff0000"
+        android:textSize="24sp"
+        android:textStyle="bold" /&gt;
+
+&lt;/LinearLayout&gt;

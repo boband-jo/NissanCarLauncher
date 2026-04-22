@@ -1,0 +1,13 @@
+
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+
+    &lt;style name="AppTheme" parent="android:Theme.Material.Light.NoActionBar"&gt;
+        &lt;item name="android:windowNoTitle"&gt;true&lt;/item&gt;
+        &lt;item name="android:windowFullscreen"&gt;true&lt;/item&gt;
+        &lt;item name="android:colorPrimary"&gt;@color/colorPrimary&lt;/item&gt;
+        &lt;item name="android:colorPrimaryDark"&gt;@color/colorPrimaryDark&lt;/item&gt;
+        &lt;item name="android:colorAccent"&gt;@color/colorAccent&lt;/item&gt;
+    &lt;/style&gt;
+
+&lt;/resources&gt;

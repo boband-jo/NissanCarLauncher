@@ -1,0 +1,87 @@
+
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1a1a2e"
+    android:orientation="vertical"&gt;
+
+    &lt;!-- 顶部状态栏区域 --&gt;
+    &lt;RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#16213e"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"&gt;
+
+        &lt;TextView
+            android:id="@+id/time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="12:00"
+            android:textColor="#ffffff"
+            android:textSize="24sp" /&gt;
+
+        &lt;TextView
+            android:id="@+id/date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/time_text"
+            android:text="2024-01-01"
+            android:textColor="#aaaaaa"
+            android:textSize="14sp" /&gt;
+
+        &lt;LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"&gt;
+
+            &lt;TextView
+                android:id="@+id/speed_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="0 km/h"
+                android:textColor="#ffffff"
+                android:textSize="18sp" /&gt;
+
+            &lt;TextView
+                android:id="@+id/fuel_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="75%"
+                android:textColor="#ffffff"
+                android:textSize="18sp" /&gt;
+
+            &lt;TextView
+                android:id="@+id/temp_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="22°C"
+                android:textColor="#ffffff"
+                android:textSize="18sp" /&gt;
+        &lt;/LinearLayout&gt;
+    &lt;/RelativeLayout&gt;
+
+    &lt;!-- 应用网格区域 --&gt;
+    &lt;GridView
+        android:id="@+id/app_grid"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:columnWidth="120dp"
+        android:gravity="center"
+        android:horizontalSpacing="30dp"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="30dp" /&gt;
+
+&lt;/LinearLayout&gt;

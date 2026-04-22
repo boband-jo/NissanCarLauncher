@@ -1,0 +1,85 @@
+
+name: Build Nissan Car Launcher APK
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Build version (optional)'
+        required: false
+        default: '1.0'
+
+jobs:
+  build:
+    name: Build Android APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 8
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug
+
+      - name: Build Release APK (unsigned)
+        run: ./gradlew assembleRelease
+
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: nissan-car-launcher-debug
+          path: app/build/outputs/apk/debug/*.apk
+
+      - name: Upload Release APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: nissan-car-launcher-release-unsigned
+          path: app/build/outputs/apk/release/*.apk
+
+      - name: Upload mapping files (if available)
+        uses: actions/upload-artifact@v3
+        with:
+          name: mapping-files
+          path: app/build/outputs/mapping/
+          if-no-files-found: ignore
+
+      - name: Get APK info
+        id: apk-info
+        run: |
+          echo "debug_apk_path=$(ls app/build/outputs/apk/debug/*.apk)" &gt;&gt; $GITHUB_OUTPUT
+          echo "release_apk_path=$(ls app/build/outputs/apk/release/*.apk 2&gt;/dev/null || echo 'not_available')" &gt;&gt; $GITHUB_OUTPUT
+
+      - name: Display build summary
+        run: |
+          echo "## Build Complete! 🎉"
+          echo ""
+          echo "### Build Artifacts:"
+          echo "- Debug APK: $(ls app/build/outputs/apk/debug/)"
+          if [ -f app/build/outputs/apk/release/*.apk ]; then
+            echo "- Release APK: $(ls app/build/outputs/apk/release/)"
+          fi
+          echo ""
+          echo "Download the APKs from the 'Artifacts' section above."
+
+      - name: Create Release (optional)
+        if: github.event_name == 'push' &amp;&amp; github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            app/build/outputs/apk/debug/*.apk
+            app/build/outputs/apk/release/*.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
