@@ -1,4 +1,3 @@
-
 name: Build Nissan Car Launcher APK
 
 on:
@@ -59,8 +58,8 @@ jobs:
       - name: Get APK info
         id: apk-info
         run: |
-          echo "debug_apk_path=$(ls app/build/outputs/apk/debug/*.apk)" &gt;&gt; $GITHUB_OUTPUT
-          echo "release_apk_path=$(ls app/build/outputs/apk/release/*.apk 2&gt;/dev/null || echo 'not_available')" &gt;&gt; $GITHUB_OUTPUT
+          echo "debug_apk_path=$(ls app/build/outputs/apk/debug/*.apk)" >> $GITHUB_OUTPUT
+          echo "release_apk_path=$(ls app/build/outputs/apk/release/*.apk 2>/dev/null || echo 'not_available')" >> $GITHUB_OUTPUT
 
       - name: Display build summary
         run: |
@@ -75,7 +74,7 @@ jobs:
           echo "Download the APKs from the 'Artifacts' section above."
 
       - name: Create Release (optional)
-        if: github.event_name == 'push' &amp;&amp; github.ref == 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v1
         with:
           files: |
