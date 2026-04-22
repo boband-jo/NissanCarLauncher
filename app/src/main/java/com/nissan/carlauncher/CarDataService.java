@@ -31,7 +31,7 @@ public class CarDataService extends Service {
     }
     
     private final IBinder mBinder = new LocalBinder();
-    private List&lt;CarDataListener&gt; mListeners = new ArrayList&lt;&gt;();
+    private List<CarDataListener> mListeners = new ArrayList<>();
     
     private LocationManager mLocationManager;
     private Handler mHandler;
@@ -105,7 +105,7 @@ public class CarDataService extends Service {
                 
                 // 模拟油耗变化
                 mFuelLevel -= (float) (Math.random() * 0.1);
-                if (mFuelLevel &lt; 0) mFuelLevel = 100;
+                if (mFuelLevel < 0) mFuelLevel = 100;
                 notifyFuelLevelChanged(mFuelLevel);
                 
                 // 模拟温度变化

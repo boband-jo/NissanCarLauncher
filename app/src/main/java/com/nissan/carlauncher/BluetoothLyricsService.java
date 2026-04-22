@@ -37,7 +37,7 @@ public class BluetoothLyricsService extends Service {
     private AudioManager mAudioManager;
     
     // 模拟歌词数据
-    private List&lt;String&gt; mLyricsList;
+    private List<String> mLyricsList;
     private int mCurrentLyricIndex = 0;
     
     @Override
@@ -103,7 +103,7 @@ public class BluetoothLyricsService extends Service {
     }
     
     private void initLyricsData() {
-        mLyricsList = new ArrayList&lt;&gt;();
+        mLyricsList = new ArrayList<>();
         mLyricsList.add("正在播放音乐...");
         mLyricsList.add("请连接蓝牙设备");
         mLyricsList.add("歌词显示中...");
@@ -129,7 +129,7 @@ public class BluetoothLyricsService extends Service {
     
     private void checkA2dpConnection() {
         if (mBluetoothA2dp != null) {
-            List&lt;BluetoothDevice&gt; devices = mBluetoothA2dp.getConnectedDevices();
+            List<BluetoothDevice> devices = mBluetoothA2dp.getConnectedDevices();
             mIsA2dpConnected = !devices.isEmpty();
             if (mIsA2dpConnected) {
                 showLyrics();
@@ -159,14 +159,14 @@ public class BluetoothLyricsService extends Service {
     };
     
     private void showLyrics() {
-        if (mLyricsView != null &amp;&amp; mLyricsView.getVisibility() != View.VISIBLE) {
+        if (mLyricsView != null && mLyricsView.getVisibility() != View.VISIBLE) {
             mLyricsView.setVisibility(View.VISIBLE);
             updateLyrics("蓝牙音乐已连接");
         }
     }
     
     private void hideLyrics() {
-        if (mLyricsView != null &amp;&amp; mLyricsView.getVisibility() == View.VISIBLE) {
+        if (mLyricsView != null && mLyricsView.getVisibility() == View.VISIBLE) {
             mLyricsView.setVisibility(View.GONE);
         }
     }
@@ -186,7 +186,7 @@ public class BluetoothLyricsService extends Service {
                     try {
                         Thread.sleep(3000);
                         mCurrentLyricIndex++;
-                        if (mCurrentLyricIndex &gt;= mLyricsList.size()) {
+                        if (mCurrentLyricIndex >= mLyricsList.size()) {
                             mCurrentLyricIndex = 0;
                         }
                         final String lyric = mLyricsList.get(mCurrentLyricIndex);
@@ -222,7 +222,7 @@ public class BluetoothLyricsService extends Service {
             mWindowManager.removeView(mLyricsView);
         }
         unregisterReceiver(mBluetoothReceiver);
-        if (mBluetoothAdapter != null &amp;&amp; mBluetoothA2dp != null) {
+        if (mBluetoothAdapter != null && mBluetoothA2dp != null) {
             mBluetoothAdapter.closeProfileProxy(BluetoothProfile.A2DP, mBluetoothA2dp);
         }
     }

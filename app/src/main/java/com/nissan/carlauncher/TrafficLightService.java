@@ -79,7 +79,7 @@ public class TrafficLightService extends Service {
     private void updateTrafficLight() {
         mCountdown--;
         
-        if (mCountdown &lt;= 0) {
+        if (mCountdown <= 0) {
             // 切换红绿灯状态
             switch (mCurrentState) {
                 case STATE_RED:
@@ -101,7 +101,7 @@ public class TrafficLightService extends Service {
     }
     
     private void updateUI() {
-        if (mLightImageView != null &amp;&amp; mCountdownTextView != null) {
+        if (mLightImageView != null && mCountdownTextView != null) {
             // 更新灯光颜色
             switch (mCurrentState) {
                 case STATE_RED:
@@ -123,14 +123,14 @@ public class TrafficLightService extends Service {
     }
     
     public void show() {
-        if (!mIsShowing &amp;&amp; mTrafficLightView != null) {
+        if (!mIsShowing && mTrafficLightView != null) {
             mTrafficLightView.setVisibility(View.VISIBLE);
             mIsShowing = true;
         }
     }
     
     public void hide() {
-        if (mIsShowing &amp;&amp; mTrafficLightView != null) {
+        if (mIsShowing && mTrafficLightView != null) {
             mTrafficLightView.setVisibility(View.GONE);
             mIsShowing = false;
         }

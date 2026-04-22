@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
     
     private GridView mAppGridView;
     private AppAdapter mAppAdapter;
-    private List&lt;AppInfo&gt; mAppList;
+    private List<AppInfo> mAppList;
     
     private CarDataService mCarDataService;
     private boolean mServiceBound = false;
@@ -47,7 +47,7 @@ public class MainActivity extends Activity {
         
         mAppGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView&lt;?&gt; parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 AppInfo appInfo = mAppList.get(position);
                 launchApp(appInfo.packageName, appInfo.activityName);
             }
@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
     }
     
     private void initAppList() {
-        mAppList = new ArrayList&lt;&gt;();
+        mAppList = new ArrayList<>();
         
         // 添加日产车机常用应用
         addApp("导航", "com.autonavi.amapauto", null, R.drawable.ic_nav);

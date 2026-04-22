@@ -16,7 +16,7 @@ public class MediaButtonReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())) {
             KeyEvent event = intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
-            if (event != null &amp;&amp; event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (event != null && event.getAction() == KeyEvent.ACTION_DOWN) {
                 handleMediaKey(context, event.getKeyCode());
             }
         }
@@ -83,9 +83,9 @@ public class MediaButtonReceiver extends BroadcastReceiver {
     
     private void handlePrevious(Context context) {
         long currentTime = System.currentTimeMillis();
-        if (currentTime - sLastClickTime &lt; 500) {
+        if (currentTime - sLastClickTime < 500) {
             sClickCount++;
-            if (sClickCount &gt;= 2) {
+            if (sClickCount >= 2) {
                 // 双击上一曲
                 Intent intent = new Intent("com.android.music.musicservicecommand");
                 intent.putExtra("command", "prev");
