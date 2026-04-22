@@ -72,13 +72,3 @@ jobs:
           fi
           echo ""
           echo "Download the APKs from the 'Artifacts' section above."
-
-      - name: Create Release (optional)
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            app/build/outputs/apk/debug/*.apk
-            app/build/outputs/apk/release/*.apk
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
