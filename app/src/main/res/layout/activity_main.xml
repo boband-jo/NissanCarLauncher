@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
+    android:background="#FF000000">
 
     <GridView
         android:id="@+id/app_grid"
@@ -12,6 +12,19 @@
         android:verticalSpacing="16dp"
         android:horizontalSpacing="16dp"
         android:padding="16dp"
-        android:stretchMode="columnWidth" />
+        android:stretchMode="columnWidth"
+        android:background="#FF000000"
+        android:visibility="visible" />
+
+    <!-- 如果没有应用时显示的占位文本 -->
+    <TextView
+        android:id="@+id/empty_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="没有找到应用"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
 </FrameLayout>
