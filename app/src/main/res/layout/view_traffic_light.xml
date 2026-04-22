@@ -3,11 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:background="#80000000">
 
-    <View
+    <ImageView
+        android:id="@+id/traffic_light"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@color/colorAccent"/>
+        android:src="@drawable/traffic_light_red" />
 
+    <TextView
+        android:id="@+id/countdown_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="30"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="4dp"/>
 </LinearLayout>
